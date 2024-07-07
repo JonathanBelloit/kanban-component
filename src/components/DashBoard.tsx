@@ -16,11 +16,16 @@ const DashBoard = () => {
   };
   console.log(lists)
 
+  const handleListDelete = (index: number) => {
+    const newLists = lists.filter((_list, i) => i !== index);
+    setLists(newLists);
+  };
+
   return (
     <Grid container spacing={2} >
         { lists.map((list, index) => (
       <Grid item xs={12} md={3} lg={3} sx={{ mt: 1, mx: 1 }}>
-          <KanbanList title={list} key={index}/>
+          <KanbanList title={list} key={index} handleListDelete={() => handleListDelete(index)} />
       </Grid>
         ))}
       <Grid item xs={12} md={3} lg={3} sx={{ mt: 1, mx: 1 }}>
@@ -41,6 +46,7 @@ const DashBoard = () => {
           <TextField
             fullWidth
             value={listTitle}
+            autoFocus
             onChange={(e) => {
               setListTitle(e.target.value);
             }}
