@@ -21,10 +21,12 @@ const NewCardDialog = ({
   setCards: Dispatch<SetStateAction<CardType[]>>;
   cards: CardType[];
 }) => {
+
   const handleAddCard = () => {
     setCards([...cards, cardDetails]);
     setOpen(false);
   };
+  
   return (
     <Dialog
       open={open}

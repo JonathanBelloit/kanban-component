@@ -4,6 +4,7 @@ import { CgAddR } from "react-icons/cg";
 import NewCardDialog from "./NewCardDialog";
 import { CardType } from "../types";
 import { MdOutlineMoreHoriz } from "react-icons/md";
+import ListOptions from "./ListOptions";
 
 const KanbanList = ({ title, handleListDelete }: { title: string; handleListDelete: () => void }) => {
   const [ cards, setCards ] = useState<CardType[]>([]);
@@ -13,18 +14,7 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
     description: '',
     status: ''
   });
-  const [showListOptions, setShowListOptions] = useState(false);
-
-  const listOptions = [
-    {
-      title: 'Delete List',
-      onClick: () => {
-        handleListDelete();
-        setShowListOptions(false);
-      }
-    }
-  ]
-
+  
   return (
     <Box
       sx={{
@@ -38,43 +28,8 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           {title}
         </Typography>
-        <MdOutlineMoreHoriz size={30} onClick={()=>setShowListOptions(!showListOptions)} />
+        <ListOptions handleListDelete={handleListDelete} />
       </Box>
-    {showListOptions && (
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            position: "relative",
-            top: 0,
-            right: 0,
-            backgroundColor: "white",
-            borderRadius: 5,
-            border: "1px solid black",
-            p: 1,
-          }}
-        >
-          {listOptions.map((option, index) => (
-            <Box
-              sx={{
-                display: "flex",
-                gap: 2,
-                transition: "ease-in-out 400ms",
-                borderRadius: 5,
-                p: 1,
-                justifyContent: 'center',
-                "&:hover": { cursor: "pointer", backgroundColor: "#d9d9d9" },
-              }}
-              onClick={() => {
-                option.onClick();
-              }}
-              key={index}
-            >
-              <Typography >{option.title}</Typography>
-            </Box>
-          ))}
-        </Box>
-      )}
       <Box
         sx={{
           display: "flex",
