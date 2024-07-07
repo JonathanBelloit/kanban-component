@@ -1,6 +1,7 @@
 import { Dialog, DialogTitle } from '@mui/material'
+import { Dispatch, SetStateAction } from 'react'
 
-const NewCard = ({ open, setOpen }: { open: boolean }) => {
+const NewCardDialog = ({ open, setOpen }: { open: boolean, setOpen: Dispatch<SetStateAction<boolean>> }) => {
   return (
     <Dialog
       open={open}
@@ -14,4 +15,4 @@ const NewCard = ({ open, setOpen }: { open: boolean }) => {
   )
 }
 
-export default NewCard
+export default NewCardDialog

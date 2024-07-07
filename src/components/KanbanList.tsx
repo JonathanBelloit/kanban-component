@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import { CgAddR } from "react-icons/cg";
-import NewCard from "./NewCard";
+import NewCardDialog from "./NewCardDialog";
 
-const KanbanList = () => {
+const KanbanList = ({ title }: { title: string }) => {
   const [ cards, setCards ] = useState([]);
   const [ newCardOpen, setNewCardOpen ] = useState(false);
   return (
@@ -17,7 +17,7 @@ const KanbanList = () => {
       }}
     >
       <Typography variant="h5" sx={{ fontWeight: "bold" }}>
-        List Title Here
+        {title}
       </Typography>
       <Box
         sx={{
@@ -36,7 +36,7 @@ const KanbanList = () => {
         <CgAddR size={20} />
         <Typography>Add Card</Typography>
       </Box>
-      <NewCard open={newCardOpen} setOpen={setNewCardOpen} />
+      <NewCardDialog open={newCardOpen} setOpen={setNewCardOpen} />
     </Box>
   );
 };
