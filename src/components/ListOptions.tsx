@@ -10,6 +10,7 @@ const ListOptions = ({ handleListDelete }: { handleListDelete: () => void }) => 
   const listOptions = [
     {
       title: 'Delete List',
+      hoverColor: 'red',
       onClick: () => {
         handleListDelete();
         setShowListOptions(false);
@@ -48,7 +49,7 @@ const ListOptions = ({ handleListDelete }: { handleListDelete: () => void }) => 
               }}
               onClick={option.onClick}
             >
-              <Typography>{option.title}</Typography>
+              <Typography sx={{ '&:hover': {color: `${option.hoverColor}`}}}>{option.title}</Typography>
             </Box>
           ))}
         </Box>
