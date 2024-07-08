@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import KanbanList from './KanbanList'
 import { Grid, Typography, Box, TextField, FormControl } from '@mui/material'
+import { CgAddR } from 'react-icons/cg';
 
 
 const DashBoard = () => {
@@ -22,27 +23,32 @@ const DashBoard = () => {
   };
 
   return (
-    <Grid container spacing={2} >
+    <Grid container spacing={1} >
         { lists.map((list, index) => (
-      <Grid item xs={12} md={3} lg={3} sx={{ mt: 1, mx: 1 }}>
+      <Grid item xs={12} md={2.5} lg={2.5} sx={{ mt: 1, mx: 1 }}>
           <KanbanList title={list} key={index} handleListDelete={() => handleListDelete(index)} />
       </Grid>
         ))}
-      <Grid item xs={12} md={3} lg={3} sx={{ mt: 1, mx: 1 }}>
+      <Grid item xs={12} md={2.5} lg={2.5} sx={{ mt: 1, mx: 1 }}>
       { !newListTitle ? (
       <Box
         sx={{
+          display: 'flex',
           transition: "ease-in-out 400ms",
           borderRadius: 5,
+          alignItems: 'center',
+          justifyContent:'center',
+          gap: 2,
           p: 2,
           "&:hover": { cursor: "pointer", backgroundColor: "#d9d9d9" },
         }}
         onClick={() => setNewListTitle(true)} 
         >
-        <Typography textAlign={'center'}>New List</Typography>
+        <CgAddR size={25} />
+        <Typography variant='h5' textAlign={'center'}>New List</Typography>
       </Box>
       ):(
-        <FormControl component="form" onSubmit={handleSubmit}>
+        <FormControl component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
           <TextField
             fullWidth
             value={listTitle}

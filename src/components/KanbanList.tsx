@@ -1,10 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, TextField, Typography, ClickAwayListener, FormControl } from "@mui/material";
 import { useState } from "react";
 import { CgAddR } from "react-icons/cg";
 import NewCardDialog from "./NewCardDialog";
 import { CardType } from "../types";
-import { MdOutlineMoreHoriz } from "react-icons/md";
 import ListOptions from "./ListOptions";
+import DraggableCard from "./DraggableCard";
 
 const KanbanList = ({ title, handleListDelete }: { title: string; handleListDelete: () => void }) => {
   const [ cards, setCards ] = useState<CardType[]>([]);
@@ -14,6 +14,16 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
     description: '',
     status: ''
   });
+  
+  const handleAddCard = () => {
+    setCards([...cards, cardDetails]);
+    setCardDetails({
+      title: '',
+      description: '',
+      status: ''
+    });
+    setNewCardOpen(false);
+  };
   
   return (
     <Box
@@ -30,6 +40,12 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
         </Typography>
         <ListOptions handleListDelete={handleListDelete} />
       </Box>
+      <Box sx={{ display: "flex",  mt: 1, flexDirection: 'column' }}>
+        { cards.map((card, index) => (
+          <DraggableCard key={index} index={index} cardDetails={card} />
+        ))}
+        </Box>
+      { !newCardOpen && (
       <Box
         sx={{
           display: "flex",
@@ -46,8 +62,26 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
       >
         <CgAddR size={20} />
         <Typography>Add Card</Typography>
+        
       </Box>
-      <NewCardDialog open={newCardOpen} setOpen={setNewCardOpen} setCardDetails={setCardDetails} cardDetails={cardDetails} setCards={setCards} cards={cards}/>
+      )}
+      <Box>
+      { newCardOpen && (
+          <ClickAwayListener onClickAway={() => setNewCardOpen(false)}>
+            <FormControl component="form" onSubmit={handleAddCard} sx={{ width: '100%'}}>
+              <TextField 
+                onChange={(e) => {
+                  setCardDetails({...cardDetails, title: e.target.value});
+                }}
+                autoFocus
+                placeholder="Enter Card Title..."
+                sx={{ mt: 2, mx: 2, width: '90%' }}
+              />
+            </FormControl>
+          </ClickAwayListener>
+        )}
+      </Box>
+      {/* <NewCardDialog open={newCardOpen} setOpen={setNewCardOpen} setCardDetails={setCardDetails} cardDetails={cardDetails} setCards={setCards} cards={cards}/> */}
     </Box>
   );
 };
