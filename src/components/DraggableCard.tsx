@@ -6,9 +6,11 @@ import CardDialog from "./CardDialog";
 const DraggableCard = ({
   cardDetails,
   index,
+  listTitle,
 }: {
   cardDetails: CardType;
   index: number;
+  listTitle: string;
 }) => {
   const [cardOpen, setCardOpen] = useState(false);
   return (
@@ -35,6 +37,7 @@ const DraggableCard = ({
         open={cardOpen}
         setOpen={setCardOpen}
         cardDetails={cardDetails}
+        listTitle={listTitle}
       />
 
     </>

@@ -42,7 +42,7 @@ const KanbanList = ({ title, handleListDelete }: { title: string; handleListDele
       </Box>
       <Box sx={{ display: "flex",  mt: 1, flexDirection: 'column' }}>
         { cards.map((card, index) => (
-          <DraggableCard key={index} index={index} cardDetails={card} />
+          <DraggableCard key={index} index={index} cardDetails={card} listTitle={title} />
         ))}
         </Box>
       { !newCardOpen && (
