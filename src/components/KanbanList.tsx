@@ -1,7 +1,7 @@
 import { Box, TextField, Typography, ClickAwayListener, FormControl } from "@mui/material";
 import { useState } from "react";
 import { CgAddR } from "react-icons/cg";
-import NewCardDialog from "./NewCardDialog";
+import NewCardDialog from "./CardDialog";
 import { CardType } from "../types";
 import ListOptions from "./ListOptions";
 import DraggableCard from "./DraggableCard";
