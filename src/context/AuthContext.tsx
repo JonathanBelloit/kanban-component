@@ -3,7 +3,7 @@ import { onAuthStateChanged, User, createUserWithEmailAndPassword } from 'fireba
 import { addDoc, collection } from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 
-interface AuthContextProps {
+export interface AuthContextProps {
   user: User | null;
   loading: boolean;
   register: (email: string, password: string) => Promise<void>;
