@@ -17,6 +17,7 @@ const Login = () => {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.log(error);
+      alert("Incorrect email or password");
     }
   }
 
